@@ -1,22 +1,23 @@
 # AutoSim Bot Android
 
-AutoSim Bot Android is an expanded Android automation project built around accessibility-driven tap execution, overlays, OCR, image matching, macros, swipes, profiles, and global runner controls.
+AutoSim Bot Android is an Android automation app for building and running repeated actions on a phone.
 
-The repository contains an Android Gradle project under `AutoSimFullProject`. The app is labeled `BOT` and extends the earlier AutoSim automation concept with richer workflow screens and reusable automation building blocks.
+In simple words, this project is like a more advanced version of an auto-clicker. It can save taps, swipes, macros, OCR areas, and other automation settings. The goal is to help a user create repeatable phone workflows from inside an Android app.
 
-## Features
+The main Android project is inside the `AutoSimFullProject` folder. The app name shown on the phone is `BOT`.
 
-- Saved click spots and swipe gestures
-- Floating overlay controls
-- Sequence and macro builders
-- OCR region scanning and phrase-based actions
-- Image template matching utilities
-- Visual macro screens
-- Profile and global runner screens
-- Local Room database for automation data
-- Import/export support
-- Accessibility service gesture execution
-- Screen capture support for OCR and image workflows
+## What This App Can Do
+
+- Save tap positions and swipe actions.
+- Build simple automation sequences.
+- Create reusable macros.
+- Show floating controls over other apps.
+- Read text from the screen using OCR.
+- Match screen text with saved phrases.
+- Store automation data in a local Room database.
+- Import and export saved settings.
+- Use Android accessibility tools to perform gestures.
+- Use screen capture for OCR and image-based features.
 
 ## Tech Stack
 
@@ -63,18 +64,17 @@ cd AutoSimFullProject
 gradle assembleDebug
 ```
 
-## Permissions
+## Permissions Used
 
-The app uses sensitive Android capabilities for user-controlled automation:
+The app uses Android permissions that are common for automation apps:
 
 - Accessibility Service for gestures
 - Display over other apps for overlays
 - MediaProjection for screen capture
 - Foreground services for active automation sessions
 
-Review every automation sequence before running it, especially on screens involving payments, account settings, or irreversible actions.
+Always review your automation before running it. Be extra careful on screens related to money, account settings, messages, or any action that cannot be undone.
 
-## Status
+## Current Status
 
-This is an active development project. Core automation concepts are present, while some advanced macro, image matching, and runner workflows may still need production hardening and end-to-end testing.
-
+This is an active development project. The main automation ideas are already included, but some advanced macro, image matching, and runner features may still need more testing and polishing.
