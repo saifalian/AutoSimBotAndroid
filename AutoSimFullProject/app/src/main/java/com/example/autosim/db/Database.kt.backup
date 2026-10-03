@@ -1,0 +1,168 @@
+
+package com.example.autosim.db
+
+import android.content.Context
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Delete
+import androidx.room.Entity
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
+
+@Entity(tableName = "profiles")
+data class Profile(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val name: String,
+    val isDefault: Boolean = false,
+    val created: Long = System.currentTimeMillis()
+)
+
+@Entity(tableName = "click_spots")
+data class ClickSpot(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1, // Default to 1 for migration
+    val name: String,
+    val x: Int,
+    val y: Int,
+    val delay: Long = 0,
+    val repeat: Int = 1
+)
+
+@Entity(tableName = "ocr_regions")
+data class OcrRegion(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1,
+    val name: String,
+    val left: Int,
+    val top: Int,
+    val width: Int,
+    val height: Int
+)
+
+@Entity(tableName = "ocr_groups")
+data class OcrGroup(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val name: String,
+    val regionId: Int
+)
+
+@Entity(tableName = "ocr_phrases")
+data class OcrPhrase(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val groupId: Int,
+    val text: String,
+    val actionId: Int? = null, // ClickSpot id for action (legacy, for CLICK)
+    val actionType: String = "CLICK", // CLICK or SWIPE
+    val swipeId: Int? = null, // Swipe id if actionType is SWIPE
+    val failureActionType: String? = null, // CLICK or SWIPE for when NOT detected
+    val failureActionId: Int? = null // ClickSpot or Swipe id for failure
+)
+
+@Entity(tableName = "swipes")
+data class Swipe(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1,
+    val name: String,
+    val startX: Int,
+    val startY: Int,
+    val endX: Int,
+    val endY: Int,
+    val duration: Long = 300
+)
+
+@Entity(tableName = "image_templates")
+data class ImageTemplate(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1,
+    val name: String,
+    val imagePath: String,
+    val threshold: Float = 0.9f,
+    val isFullScreen: Boolean = false,
+    val regionId: Int? = null // If not full screen, which region to search in
+)
+
+@Entity(tableName = "text_detection_phrases")
+data class TextDetectionPhrase(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1,
+    val text: String,
+    val actionId: Int? = null // ClickSpot id for action
+)
+
+@Entity(tableName = "sequences")
+data class Sequence(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val profileId: Int = 1,
+    val name: String,
+    val repeatCount: Int = 1, // 1 for one time, -1 for infinite, N for N times
+    val isEnabled: Boolean = true,
+    val executionOrder: Int = 0,
+    val stopAfter: Boolean = false, // Stop Global Runner after this sequence
+    val playlistRepeatCount: Int = 1, // How many times this sequence runs within one global loop
+    val playlistDelay: Long = -1 // Delay after this sequence in playlist (-1 = use global default)
+)
+
+enum class StepType {
+    CLICK, SWIPE, IMAGE_DETECTION, OCR_REGION_SCAN, TEXT_DETECTION, WAIT, REPEAT, CONDITIONAL
+}
+
+class StepTypeConverter {
+    @TypeConverter
+    fun fromStepType(value: StepType): String = value.name
+    
+    @TypeConverter
+    fun toStepType(value: String): StepType = StepType.valueOf(value)
+}
+
+@Entity(tableName = "sequence_steps")
+data class SequenceStep(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val sequenceId: Int,
+    val stepNumber: Int,
+    val type: StepType,
+    val targetId: Int? = null, // Can be ClickSpot id, OcrRegion id, ImageTemplate id, etc.
+    val delay: Long? = null, // For WAIT step
+    val delayAfter: Long = 100, // Delay after this step
+    val repeatCount: Int? = null, // For REPEAT step
+    val jumpToStep: Int? = null, // For CONDITIONAL step
+    val conditionalPhrase: String? = null, // For CONDITIONAL step
+    val successActionType: String? = null, // CLICK or SWIPE when detected
+    val successActionId: Int? = null, // ClickSpot or Swipe id for success
+    val failureActionType: String? = null, // CLICK or SWIPE when NOT detected
+    val failureActionId: Int? = null // ClickSpot or Swipe id for failure
+)
+
+@Entity(tableName = "ocr_region_text_history")
+data class OcrRegionTextHistory(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val regionId: Int,
+    val recognizedText: String,
+    val timestamp: Long = System.currentTimeMillis()
+)
+
+@Entity(tableName = "logs_history")
+data class LogHistory(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val message: String = "",
+    val timestamp: Long = System.currentTimeMillis()
+)

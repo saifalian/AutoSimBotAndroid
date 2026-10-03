@@ -1,0 +1,31 @@
+    private fun updateMenuLayout() {
+        if (windowManager == null) return
+        
+        // Determine orientation
+        val isLandscape = realScreenSize.x > realScreenSize.y
+        
+        // Determine position (controlsParams.x is distance from Right, y is distance from Bottom)
+        // because gravity is BOTTOM | END
+        val distFromRight = controlsParams.x
+        val distFromBottom = controlsParams.y
+        
+        // We need absolute coordinates to be sure, but relative works too if we know screen size
+        // Center of screen
+        val centerX = realScreenSize.x / 2
+        val centerY = realScreenSize.y / 2
+        
+        // Current FAB position (approximate, since x/y are offsets)
+        // If x is small, we are on the Right. If x is large, we are on the Left.
+        // If y is small, we are on the Bottom. If y is large, we are on the Top.
+        
+        val isOnRight = distFromRight < centerX
+        val isOnBottom = distFromBottom < centerY
+        
+        controlsContainer.removeAllViews()
+        
+        val mainFab = controlsContainer.findViewById<View>(R.id.main_fab) ?: return // Should be there, but safety check
+        // We need to re-find action buttons or keep a reference. 
+        // We have 'actionButtons' list in setupOverlay scope, but not here.
+        // We need to make actionButtons class-level or pass them.
+        // Let's make actionButtons class-level property.
+    }
