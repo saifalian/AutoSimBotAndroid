@@ -62,6 +62,10 @@ README.md                 Project documentation
 
 The image above is a clean project preview for GitHub. It shows the main idea of the project in a simple way.
 
+## Build Check
+
+Build note: the nested Android project does not currently include a Gradle wrapper script. Open AutoSimFullProject in Android Studio, or use a compatible Gradle install from your Android Studio setup.
+
 ## Current Status
 
 This project is uploaded to GitHub and prepared as a portfolio-style repository. More improvements can be added later, such as real app screenshots, demo videos, releases, and issue templates.
