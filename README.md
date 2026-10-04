@@ -1,80 +1,75 @@
 # AutoSim Bot Android
 
-AutoSim Bot Android is an Android automation app for building and running repeated actions on a phone.
+![AutoSim Bot Android preview](docs/screenshots/preview.svg)
 
-In simple words, this project is like a more advanced version of an auto-clicker. It can save taps, swipes, macros, OCR areas, and other automation settings. The goal is to help a user create repeatable phone workflows from inside an Android app.
+## Short Description
 
-The main Android project is inside the `AutoSimFullProject` folder. The app name shown on the phone is `BOT`.
+A bigger Android automation bot with macros, OCR areas, swipes, and profiles.
 
-## What This App Can Do
+## About This Project
 
-- Save tap positions and swipe actions.
-- Build simple automation sequences.
-- Create reusable macros.
-- Show floating controls over other apps.
-- Read text from the screen using OCR.
-- Match screen text with saved phrases.
-- Store automation data in a local Room database.
-- Import and export saved settings.
-- Use Android accessibility tools to perform gestures.
-- Use screen capture for OCR and image-based features.
+AutoSim Bot Android is an advanced Android automation project. It is like a stronger auto-clicker, but with saved macros, swipe actions, OCR checks, profile data, and runner controls.
+
+The goal is to keep the project easy to understand, easy to run, and useful for learning or further development.
+
+## Main Features
+
+- Save taps, swipes, and macros
+- Build repeatable phone workflows
+- Use OCR areas for text-based triggers
+- Control automation from overlay tools
+- Store profiles and settings locally
+- Import/export automation settings
 
 ## Tech Stack
 
 - Kotlin
-- Android Gradle Plugin
 - Jetpack Compose
-- Material 3
 - Room
-- Kotlin Coroutines and Flow
-- Google ML Kit Text Recognition
-- Android Accessibility APIs
-- Android MediaProjection APIs
+- ML Kit OCR
+- Android Accessibility
 
-## Project Layout
+## Project Location
+
+Main local folder:
+
+```text
+D:\PROJECTS\AutoSimBotAndroid\AutoSimFullProject
+```
+
+GitHub repository:
+
+https://github.com/saifalian/AutoSimBotAndroid
+
+## Project Structure
 
 ```text
 AutoSimFullProject/
-├── app/src/main/java/com/example/autosim
-│   ├── accessibility/
-│   ├── db/
-│   ├── engine/
-│   ├── ui/
-│   └── utils/
-├── app/src/main/res/
-├── build.gradle
-└── settings.gradle
+AutoSimFullProject/app/   Main Android app
+AutoSimFullProject/gradle/ Gradle files
+README.md                 Project documentation
 ```
 
-## Requirements
+## How To Run
 
-- Android Studio
-- JDK 17 or Android Studio bundled JDK
-- Android SDK installed
-- Android device or emulator
+1. Open AutoSimFullProject in Android Studio.
+2. Sync Gradle.
+3. Build with gradle assembleDebug.
+4. Install on a test phone or emulator.
+5. Grant automation permissions only after reviewing the workflow.
 
-## Build
+## Screenshot
 
-Open `AutoSimFullProject` in Android Studio and sync Gradle.
-
-From a terminal with Gradle available:
-
-```powershell
-cd AutoSimFullProject
-gradle assembleDebug
-```
-
-## Permissions Used
-
-The app uses Android permissions that are common for automation apps:
-
-- Accessibility Service for gestures
-- Display over other apps for overlays
-- MediaProjection for screen capture
-- Foreground services for active automation sessions
-
-Always review your automation before running it. Be extra careful on screens related to money, account settings, messages, or any action that cannot be undone.
+The image above is a clean project preview for GitHub. It shows the main idea of the project in a simple way.
 
 ## Current Status
 
-This is an active development project. The main automation ideas are already included, but some advanced macro, image matching, and runner features may still need more testing and polishing.
+This project is uploaded to GitHub and prepared as a portfolio-style repository. More improvements can be added later, such as real app screenshots, demo videos, releases, and issue templates.
+
+## Safety Note
+
+Automation can affect other apps. Test on safe screens first.
+
+## License
+
+No license file is included yet. Add a license before using this project as an open-source project.
