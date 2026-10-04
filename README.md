@@ -22,6 +22,10 @@ The goal is to keep the project easy to understand, easy to run, and useful for 
 
 ## Screenshots
 
+### Real Android emulator screenshot
+
+![Real Android emulator screenshot](docs/screenshots/real-app.png)
+
 ### Project preview
 
 ![Project preview](docs/screenshots/preview.svg)
@@ -75,6 +79,10 @@ README.md                 Project documentation
 3. Build with gradle assembleDebug.
 4. Install on a test phone or emulator.
 5. Grant automation permissions only after reviewing the workflow.
+
+## Build Check
+
+Build check: Gradle wrapper files were restored in AutoSimFullProject, assembleDebug completed successfully, and the app was installed and opened on an Android emulator for the real screenshot.
 
 ## Current Status
 
