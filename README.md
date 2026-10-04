@@ -1,6 +1,5 @@
 # AutoSim Bot Android
 
-![AutoSim Bot Android preview](docs/screenshots/preview.svg)
 
 ## Short Description
 
@@ -25,14 +24,6 @@ The goal is to keep the project easy to understand, easy to run, and useful for 
 ### Real Android emulator screenshot
 
 ![Real Android emulator screenshot](docs/screenshots/real-app.png)
-
-### Project preview
-
-![Project preview](docs/screenshots/preview.svg)
-
-### Real source structure
-
-![Real source structure](docs/screenshots/source-structure.svg)
 
 ## Main Features
 
