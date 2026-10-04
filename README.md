@@ -12,6 +12,24 @@ AutoSim Bot Android is an advanced Android automation project. It is like a stro
 
 The goal is to keep the project easy to understand, easy to run, and useful for learning or further development.
 
+## Purpose And Idea
+
+**Purpose:** The purpose of this project is to build a stronger Android automation bot with macros, profiles, tap steps, swipe steps, OCR areas, and runner controls.
+
+**Idea:** The idea is to go beyond a basic auto-clicker. The app should let a user build reusable automation flows and control them from an Android app.
+
+**Why I made it:** I made this to test a bigger automation system and learn how macros, overlays, screen capture, and saved profiles can work together.
+
+## Screenshots
+
+### Project preview
+
+![Project preview](docs/screenshots/preview.svg)
+
+### Real source structure
+
+![Real source structure](docs/screenshots/source-structure.svg)
+
 ## Main Features
 
 - Save taps, swipes, and macros
@@ -57,14 +75,6 @@ README.md                 Project documentation
 3. Build with gradle assembleDebug.
 4. Install on a test phone or emulator.
 5. Grant automation permissions only after reviewing the workflow.
-
-## Screenshot
-
-The image above is a clean project preview for GitHub. It shows the main idea of the project in a simple way.
-
-## Build Check
-
-Build note: the nested Android project does not currently include a Gradle wrapper script. Open AutoSimFullProject in Android Studio, or use a compatible Gradle install from your Android Studio setup.
 
 ## Current Status
 
